@@ -28,7 +28,7 @@ use anchor_lang::{
     system_program::System,
 };
 use anchor_spl::{associated_token::AssociatedToken, token::Token};
-use mpl_token_metadata::{
+use token_metadata::{
     assertions::collection::assert_collection_verify_is_valid, state::CollectionDetails,
 };
 use spl_account_compression::{
@@ -784,7 +784,7 @@ fn process_collection_verification_mpl_only<'info>(
         }
 
         invoke_signed(
-            &mpl_token_metadata::instruction::bubblegum_set_collection_size(
+            &token_metadata::instruction::bubblegum_set_collection_size(
                 token_metadata_program.key(),
                 collection_metadata.to_account_info().key(),
                 collection_authority.key(),
@@ -1558,7 +1558,7 @@ pub mod bubblegum {
 
         msg!("Creating metadata!");
         invoke_signed(
-            &mpl_token_metadata::instruction::create_metadata_accounts_v3(
+            &token_metadata::instruction::create_metadata_accounts_v3(
                 ctx.accounts.token_metadata_program.key(),
                 ctx.accounts.metadata.key(),
                 ctx.accounts.mint.key(),
@@ -1589,7 +1589,7 @@ pub mod bubblegum {
 
         msg!("Creating master edition!");
         invoke_signed(
-            &mpl_token_metadata::instruction::create_master_edition_v3(
+            &token_metadata::instruction::create_master_edition_v3(
                 ctx.accounts.token_metadata_program.key(),
                 ctx.accounts.master_edition.key(),
                 ctx.accounts.mint.key(),

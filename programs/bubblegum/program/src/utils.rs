@@ -3,7 +3,7 @@ use anchor_lang::{
     prelude::*,
     solana_program::{program_memory::sol_memcmp, pubkey::PUBKEY_BYTES},
 };
-use mpl_token_metadata::{
+use token_metadata::{
     instruction::MetadataDelegateRole,
     pda::{find_collection_authority_account, find_metadata_delegate_record_account},
     state::{CollectionAuthorityRecord, Metadata, MetadataDelegateRecord, TokenMetadataAccount},
@@ -12,15 +12,15 @@ use spl_account_compression::Node;
 
 /// Assert that the provided MetadataArgs are compatible with MPL `Data`
 pub fn assert_metadata_is_mpl_compatible(metadata: &MetadataArgs) -> Result<()> {
-    if metadata.name.len() > mpl_token_metadata::state::MAX_NAME_LENGTH {
+    if metadata.name.len() > token_metadata::state::MAX_NAME_LENGTH {
         return Err(BubblegumError::MetadataNameTooLong.into());
     }
 
-    if metadata.symbol.len() > mpl_token_metadata::state::MAX_SYMBOL_LENGTH {
+    if metadata.symbol.len() > token_metadata::state::MAX_SYMBOL_LENGTH {
         return Err(BubblegumError::MetadataSymbolTooLong.into());
     }
 
-    if metadata.uri.len() > mpl_token_metadata::state::MAX_URI_LENGTH {
+    if metadata.uri.len() > token_metadata::state::MAX_URI_LENGTH {
         return Err(BubblegumError::MetadataUriTooLong.into());
     }
 
@@ -28,7 +28,7 @@ pub fn assert_metadata_is_mpl_compatible(metadata: &MetadataArgs) -> Result<()> 
         return Err(BubblegumError::MetadataBasisPointsTooHigh.into());
     }
     if !metadata.creators.is_empty() {
-        if metadata.creators.len() > mpl_token_metadata::state::MAX_CREATOR_LIMIT {
+        if metadata.creators.len() > token_metadata::state::MAX_CREATOR_LIMIT {
             return Err(BubblegumError::CreatorsTooLong.into());
         }
 

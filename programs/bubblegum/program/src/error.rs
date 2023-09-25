@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use mpl_token_metadata::error::MetadataError;
+use token_metadata::error::MetadataError;
 use num_traits::FromPrimitive;
 
 #[error_code]

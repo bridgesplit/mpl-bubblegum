@@ -15,8 +15,8 @@ pub struct Creator {
 }
 
 impl Creator {
-    pub fn adapt(&self) -> mpl_token_metadata::state::Creator {
-        mpl_token_metadata::state::Creator {
+    pub fn adapt(&self) -> token_metadata::state::Creator {
+        token_metadata::state::Creator {
             address: self.address,
             verified: self.verified,
             share: self.share,
@@ -48,12 +48,12 @@ pub struct Uses {
 }
 
 impl Uses {
-    pub fn adapt(&self) -> mpl_token_metadata::state::Uses {
-        mpl_token_metadata::state::Uses {
+    pub fn adapt(&self) -> token_metadata::state::Uses {
+        token_metadata::state::Uses {
             use_method: match self.use_method {
-                UseMethod::Burn => mpl_token_metadata::state::UseMethod::Burn,
-                UseMethod::Multiple => mpl_token_metadata::state::UseMethod::Multiple,
-                UseMethod::Single => mpl_token_metadata::state::UseMethod::Single,
+                UseMethod::Burn => token_metadata::state::UseMethod::Burn,
+                UseMethod::Multiple => token_metadata::state::UseMethod::Multiple,
+                UseMethod::Single => token_metadata::state::UseMethod::Single,
             },
             remaining: self.remaining,
             total: self.total,
@@ -69,8 +69,8 @@ pub struct Collection {
 }
 
 impl Collection {
-    pub fn adapt(&self) -> mpl_token_metadata::state::Collection {
-        mpl_token_metadata::state::Collection {
+    pub fn adapt(&self) -> token_metadata::state::Collection {
+        token_metadata::state::Collection {
             verified: self.verified,
             key: self.key,
         }
